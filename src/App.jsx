@@ -5,15 +5,15 @@ import { Phone, Star, ShieldCheck, Droplets, Home, Building2, Clock, MapPin, Che
 export default function JackedLandingPage() {
   const [form, setForm] = useState({ name: "", phone: "", service: "", message: "" });
 
-  const phoneNumber = "(XXX) XXX-XXXX"; // Replace with your business phone number
-  const emailAddress = "yourbusiness@email.com"; // Replace with your business email
+  const phoneNumber = "(202) 759-3580";
+  const emailAddress = "jackedspecialtyservices@gmail.com";
 
   const services = [
-    "Driveway Cleaning",
-    "House Washing",
-    "Patio & Walkway Cleaning",
-    "Fence & Deck Cleaning",
-    "Commercial Pressure Washing",
+    "Power Washing",
+    "Pressure Washing",
+    "Concrete Cleaning",
+    "Walkway & Entryway Cleaning",
+    "Residential Exterior Cleaning",
     "Dryer Vent Cleaning",
   ];
 
@@ -48,7 +48,7 @@ export default function JackedLandingPage() {
             </div>
             <div>
               <p className="text-lg font-black tracking-tight">Jacked Specialty Services</p>
-              <p className="text-xs uppercase tracking-[0.3em] text-red-400">Pressure Washing • DMV</p>
+              <p className="text-xs uppercase tracking-[0.3em] text-red-400">Power Washing • Pressure Washing • DMV</p>
             </div>
           </div>
 
@@ -76,7 +76,7 @@ export default function JackedLandingPage() {
             </h1>
 
             <p className="mt-6 max-w-xl text-lg leading-8 text-neutral-300">
-              Professional pressure washing and exterior cleaning for homes and businesses across the DMV. Get a fast quote, clear pricing, and serious curb appeal without the hassle.
+              Professional power washing, pressure washing, and dryer vent cleaning for homes and businesses across the DMV. Get a free on-site quote, clear pricing, and serious curb appeal without the hassle.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -110,9 +110,9 @@ export default function JackedLandingPage() {
               <div className="grid gap-4">
                 <div className="rounded-[1.5rem] bg-gradient-to-br from-neutral-800 to-neutral-950 p-6">
                   <p className="text-sm uppercase tracking-[0.35em] text-red-400">Limited Starter Offer</p>
-                  <h2 className="mt-3 text-3xl font-black">Driveway Cleaning Starting at $99*</h2>
-                  <p className="mt-3 text-neutral-300">Perfect entry offer for Google Ads. Use this to get people to call, then upsell house wash, patio, or walkway cleaning.</p>
-                  <p className="mt-4 text-xs text-neutral-500">*Final price depends on size, condition, location, and access.</p>
+                  <h2 className="mt-3 text-3xl font-black">Free On-Site Quotes + $100 Off First-Time Customers</h2>
+                  <p className="mt-3 text-neutral-300">Book your first service with Jacked Specialty Services and get $100 off as a first-time customer. We provide free on-site quotes for power washing, pressure washing, and dryer vent cleaning.</p>
+                  <p className="mt-4 text-xs text-neutral-500">Offer applies to qualifying first-time customer jobs. Final pricing depends on size, condition, location, and access.</p>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
@@ -162,12 +162,12 @@ export default function JackedLandingPage() {
 
           <div className="grid gap-5 md:grid-cols-2">
             <div className="rounded-3xl border border-neutral-800 bg-neutral-950 p-5">
-              <div className="flex h-72 items-center justify-center rounded-2xl bg-neutral-800 text-neutral-500">Before Photo</div>
-              <p className="mt-4 font-bold">Dirty driveway, patio, siding, or walkway</p>
+              <img src="/before.jpg" alt="Before power washing front steps" className="h-72 w-full rounded-2xl object-cover" />
+              <p className="mt-4 font-bold">Before: stained concrete entryway and walkway</p>
             </div>
             <div className="rounded-3xl border border-red-900/60 bg-neutral-950 p-5">
-              <div className="flex h-72 items-center justify-center rounded-2xl bg-red-950/40 text-red-300">After Photo</div>
-              <p className="mt-4 font-bold">Clean finish with boosted curb appeal</p>
+              <img src="/after.jpg" alt="After power washing front steps" className="h-72 w-full rounded-2xl object-cover" />
+              <p className="mt-4 font-bold">After: cleaner, brighter, and ready to impress</p>
             </div>
           </div>
         </div>
@@ -183,7 +183,11 @@ export default function JackedLandingPage() {
           </div>
 
           <div className="grid gap-4">
-            {["Great service and very professional. The results looked amazing.", "Showed up on time, gave a fair quote, and got the job done right.", "My driveway and walkway looked brand new after the cleaning."].map((review) => (
+            {[
+              "They did a great job for me. My concrete is like new. Reasonably priced, great service. — Thom V.",
+              "The team was prompt and efficient. The result looks great. I'd call them for future projects. — A M.",
+              "Amazing response time and price. Very professional and highly recommended. Sent me pictures while I was out of town and got the job done within a few days! — Anna W."
+            ].map((review) => (
               <div key={review} className="rounded-3xl border border-neutral-800 bg-neutral-900 p-6">
                 <div className="mb-3 flex gap-1 text-red-500">
                   {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 fill-red-500" />)}
@@ -279,7 +283,7 @@ export default function JackedLandingPage() {
       <footer className="border-t border-neutral-800 bg-neutral-950 px-5 py-8">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 text-sm text-neutral-500 md:flex-row">
           <p>© {new Date().getFullYear()} Jacked Specialty Services. All rights reserved.</p>
-          <p>Pressure Washing • Exterior Cleaning • Dryer Vent Cleaning • DMV Area</p>
+          <p>Power Washing • Pressure Washing • Dryer Vent Cleaning • DMV Area</p>
         </div>
       </footer>
 
