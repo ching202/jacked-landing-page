@@ -36,28 +36,14 @@ export default function JackedLandingPage() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const subject = encodeURIComponent("New Free Quote Request - Jacked Specialty Services");
-    const body = encodeURIComponent(
-      `New quote request from the landing page
-
-Name: ${form.name}
-Phone: ${form.phone}
-Email: ${form.email}
-Service Needed: ${form.service}
-Property Address/Area: ${form.address}
-Message: ${form.message}
-
-Reminder: Customer was told they will receive a response within the hour during business hours.`
-    );
-    window.location.href = `mailto:${emailAddress}?subject=${subject}&body=${body}`;
+  const handleSubmit = () => {
+    alert("Thanks! Your quote request is being sent to Jacked Specialty Services. We will respond within the hour during business hours.");
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white">
+    <div className="min-h-screen bg-white text-black">
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-orange-500/20 bg-zinc-950/95 backdrop-blur">
+      <header className="sticky top-0 z-50 border-b border-orange-500/20 bg-white/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
           <div className="flex items-center gap-3">
             <img
@@ -73,7 +59,7 @@ Reminder: Customer was told they will receive a response within the hour during 
           </div>
 
           <div className="hidden gap-3 md:flex">
-            <a href={`mailto:${emailAddress}`} className="rounded-2xl border border-zinc-700 px-5 py-3 text-sm font-bold text-zinc-100 transition hover:border-orange-500 hover:bg-zinc-900">
+            <a href={`mailto:${emailAddress}`} className="rounded-2xl border border-zinc-300 px-5 py-3 text-sm font-bold text-zinc-100 transition hover:border-orange-500 hover:bg-white">
               Email Us
             </a>
             <a href={`tel:${phoneNumber.replace(/[^0-9]/g, "")}`} className="rounded-2xl bg-orange-500 px-5 py-3 text-sm font-black text-black shadow-lg shadow-orange-950/40 transition hover:bg-orange-400">
@@ -96,7 +82,7 @@ Reminder: Customer was told they will receive a response within the hour during 
               Get a Fast Quote for <span className="text-orange-400">Power Washing</span> & Dryer Vent Cleaning.
             </h1>
 
-            <p className="mt-6 max-w-xl text-lg leading-8 text-zinc-300">
+            <p className="mt-6 max-w-xl text-lg leading-8 text-zinc-700">
               Serving DC, Maryland, and Northern Virginia with professional pressure washing, power washing, concrete cleaning, and dryer vent cleaning.
             </p>
 
@@ -105,7 +91,7 @@ Reminder: Customer was told they will receive a response within the hour during 
                 <Phone className="h-5 w-5" />
                 Call {phoneNumber}
               </a>
-              <a href={`mailto:${emailAddress}`} className="inline-flex items-center justify-center gap-2 rounded-2xl border border-zinc-700 bg-white px-7 py-4 text-base font-black text-black transition hover:bg-zinc-200">
+              <a href={`mailto:${emailAddress}`} className="inline-flex items-center justify-center gap-2 rounded-2xl border border-zinc-300 bg-white px-7 py-4 text-base font-black text-black transition hover:bg-zinc-200">
                 <Mail className="h-5 w-5" />
                 Email for Quote
               </a>
@@ -113,7 +99,7 @@ Reminder: Customer was told they will receive a response within the hour during 
 
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
               {["$100 First-Time Voucher", "Free On-Site Quotes", "Response Within the Hour*"].map((item) => (
-                <div key={item} className="rounded-2xl border border-zinc-800 bg-zinc-900/80 p-4 text-sm font-bold text-zinc-200">
+                <div key={item} className="rounded-2xl border border-zinc-200 bg-white/80 p-4 text-sm font-bold text-zinc-200">
                   <CheckCircle2 className="mb-2 h-5 w-5 text-orange-400" />
                   {item}
                 </div>
@@ -123,25 +109,33 @@ Reminder: Customer was told they will receive a response within the hour during 
           </motion.div>
 
           <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.45, delay: 0.1 }}>
-            <form onSubmit={handleSubmit} className="rounded-[2rem] border border-orange-500/30 bg-zinc-900 p-6 shadow-2xl shadow-black/40">
+            <form
+              action="https://formsubmit.co/jackedspecialtyservices@gmail.com"
+              method="POST"
+              onSubmit={handleSubmit}
+              className="rounded-[2rem] border border-orange-500/30 bg-white p-6 shadow-2xl shadow-black/40"
+            >
+              <input type="hidden" name="_subject" value="New Free Quote Request - Jacked Specialty Services" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_template" value="table" />
               <div className="mb-5">
                 <p className="text-sm font-black uppercase tracking-[0.3em] text-orange-400">Request Your Free Quote</p>
                 <h2 className="mt-2 text-3xl font-black">Tell us what needs cleaning.</h2>
-                <p className="mt-2 text-sm text-zinc-400">Submit this form and we’ll respond within the hour if the business is open.</p>
+                <p className="mt-2 text-sm text-zinc-600">Submit this form and we’ll respond within the hour if the business is open.</p>
               </div>
 
               <div className="grid gap-4">
-                <input name="name" value={form.name} onChange={handleChange} required placeholder="Your name" className="rounded-2xl border border-zinc-700 bg-zinc-950 px-4 py-4 text-white outline-none transition focus:border-orange-500" />
+                <input name="name" value={form.name} onChange={handleChange} required placeholder="Your name" className="rounded-2xl border border-zinc-300 bg-white px-4 py-4 text-white outline-none transition focus:border-orange-500" />
                 <div className="grid gap-4 sm:grid-cols-2">
-                  <input name="phone" value={form.phone} onChange={handleChange} required placeholder="Phone number" className="rounded-2xl border border-zinc-700 bg-zinc-950 px-4 py-4 text-white outline-none transition focus:border-orange-500" />
-                  <input name="email" type="email" value={form.email} onChange={handleChange} placeholder="Email address" className="rounded-2xl border border-zinc-700 bg-zinc-950 px-4 py-4 text-white outline-none transition focus:border-orange-500" />
+                  <input name="phone" value={form.phone} onChange={handleChange} required placeholder="Phone number" className="rounded-2xl border border-zinc-300 bg-white px-4 py-4 text-white outline-none transition focus:border-orange-500" />
+                  <input name="email" type="email" value={form.email} onChange={handleChange} placeholder="Email address" className="rounded-2xl border border-zinc-300 bg-white px-4 py-4 text-white outline-none transition focus:border-orange-500" />
                 </div>
-                <select name="service" value={form.service} onChange={handleChange} required className="rounded-2xl border border-zinc-700 bg-zinc-950 px-4 py-4 text-white outline-none transition focus:border-orange-500">
+                <select name="service" value={form.service} onChange={handleChange} required className="rounded-2xl border border-zinc-300 bg-white px-4 py-4 text-white outline-none transition focus:border-orange-500">
                   <option value="">Service needed</option>
                   {services.map((service) => <option key={service} value={service}>{service}</option>)}
                 </select>
-                <input name="address" value={form.address} onChange={handleChange} placeholder="Property address or city" className="rounded-2xl border border-zinc-700 bg-zinc-950 px-4 py-4 text-white outline-none transition focus:border-orange-500" />
-                <textarea name="message" value={form.message} onChange={handleChange} rows="4" placeholder="Tell us about the job, timeline, and any problem areas..." className="rounded-2xl border border-zinc-700 bg-zinc-950 px-4 py-4 text-white outline-none transition focus:border-orange-500" />
+                <input name="address" value={form.address} onChange={handleChange} placeholder="Property address or city" className="rounded-2xl border border-zinc-300 bg-white px-4 py-4 text-white outline-none transition focus:border-orange-500" />
+                <textarea name="message" value={form.message} onChange={handleChange} rows="4" placeholder="Tell us about the job, timeline, and any problem areas..." className="rounded-2xl border border-zinc-300 bg-white px-4 py-4 text-white outline-none transition focus:border-orange-500" />
                 <button className="inline-flex items-center justify-center gap-2 rounded-2xl bg-orange-500 px-7 py-4 text-base font-black text-black shadow-xl shadow-orange-950/50 transition hover:bg-orange-400">
                   <Send className="h-5 w-5" />
                   Send My Quote Request
@@ -159,15 +153,15 @@ Reminder: Customer was told they will receive a response within the hour during 
           <div>
             <p className="text-sm font-black uppercase tracking-[0.3em] text-orange-400">Our Offer</p>
             <h2 className="mt-3 text-3xl font-black md:text-5xl">Free on-site quotes and $100 off your first service.</h2>
-            <p className="mt-5 text-zinc-300">Whether you need concrete cleaned, exterior areas refreshed, or dryer vents serviced, we make it easy to get a professional quote fast.</p>
+            <p className="mt-5 text-zinc-700">Whether you need concrete cleaned, exterior areas refreshed, or dryer vents serviced, we make it easy to get a professional quote fast.</p>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
             {services.map((service) => (
-              <div key={service} className="rounded-3xl border border-zinc-800 bg-zinc-900 p-6">
+              <div key={service} className="rounded-3xl border border-zinc-200 bg-white p-6">
                 <Droplets className="h-8 w-8 text-orange-400" />
                 <h3 className="mt-4 text-xl font-black">{service}</h3>
-                <p className="mt-2 text-sm text-zinc-400">Professional service, clean results, and a simple quote process.</p>
+                <p className="mt-2 text-sm text-zinc-600">Professional service, clean results, and a simple quote process.</p>
               </div>
             ))}
           </div>
@@ -186,12 +180,32 @@ Reminder: Customer was told they will receive a response within the hour during 
           <div className="grid gap-5 md:grid-cols-2">
             <div className="rounded-3xl border border-zinc-300 bg-white p-4 shadow-xl shadow-zinc-300/40">
               <div className="mb-3 flex items-center gap-2 text-sm font-black uppercase tracking-[0.2em] text-zinc-500"><Camera className="h-4 w-4" /> Before</div>
-              <img src="/before.jpg" alt="Before power washing front steps" className="h-[32rem] w-full rounded-2xl object-cover" />
+              <img
+                src="/before.jpg"
+                alt="Before power washing front steps"
+                className="h-[32rem] w-full rounded-2xl object-cover"
+                onError={(e) => {
+                  if (!e.currentTarget.dataset.fallback) {
+                    e.currentTarget.dataset.fallback = "true";
+                    e.currentTarget.src = "/3.jpg";
+                  }
+                }}
+              />
               <p className="mt-4 font-bold">Stained concrete entryway and walkway</p>
             </div>
             <div className="rounded-3xl border border-orange-300 bg-white p-4 shadow-xl shadow-orange-200/50">
               <div className="mb-3 flex items-center gap-2 text-sm font-black uppercase tracking-[0.2em] text-orange-600"><Camera className="h-4 w-4" /> After</div>
-              <img src="/after.jpg" alt="After power washing front steps" className="h-[32rem] w-full rounded-2xl object-cover" />
+              <img
+                src="/after.jpg"
+                alt="After power washing front steps"
+                className="h-[32rem] w-full rounded-2xl object-cover"
+                onError={(e) => {
+                  if (!e.currentTarget.dataset.fallback) {
+                    e.currentTarget.dataset.fallback = "true";
+                    e.currentTarget.src = "/4.jpg";
+                  }
+                }}
+              />
               <p className="mt-4 font-bold">Cleaner, brighter, and ready to impress</p>
             </div>
           </div>
@@ -207,7 +221,7 @@ Reminder: Customer was told they will receive a response within the hour during 
 
         <div className="grid gap-5 md:grid-cols-3">
           {reviews.map((review) => (
-            <div key={review.name} className="rounded-3xl border border-zinc-800 bg-zinc-900 p-6 shadow-lg shadow-black/20">
+            <div key={review.name} className="rounded-3xl border border-zinc-200 bg-white p-6 shadow-lg shadow-black/20">
               <div className="mb-4 flex gap-1 text-orange-400">
                 {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 fill-orange-400" />)}
               </div>
@@ -233,7 +247,7 @@ Reminder: Customer was told they will receive a response within the hour during 
         </div>
       </section>
 
-      <footer className="border-t border-zinc-800 bg-zinc-950 px-5 py-8">
+      <footer className="border-t border-zinc-200 bg-white px-5 py-8">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 text-sm text-zinc-500 md:flex-row">
           <p>© {new Date().getFullYear()} Jacked Specialty Services. All rights reserved.</p>
           <p>DC • Maryland • Northern Virginia</p>
